@@ -29,7 +29,7 @@ public class NumericRangeTest {
 		Set<?> validate2 = new SimpleValidator().validate(bean);
 		TestUtil.assertValid(
 				(Set<ConstraintViolation<?>>) validate2, //
-				"Campo ${br.atech.workshop.duplicateCode.validation.NumericDomainBean.age} deve estar entre 0.0 e 200.0.");
+				"Campo ${br.atech.workshop.duplicateCode.validation.NumericRangeBean.age} deve estar entre 0.0 e 200.0.");
 	}
 
 	@Test
@@ -45,9 +45,8 @@ public class NumericRangeTest {
 		Set<?> validate2 = new SimpleValidator().validate(bean);
 		TestUtil.assertValid(
 				(Set<ConstraintViolation<?>>) validate2, //
-				"Campo ${br.atech.workshop.duplicateCode.validation.NumericDomainBean.salary} deve estar entre 780.0 e 780.99.");
+				"Campo ${br.atech.workshop.duplicateCode.validation.NumericRangeBean.salary} deve estar entre 780.0 e 780.99.");
 	}
-
 
 	@Test
 	public void testBig() {
@@ -62,19 +61,6 @@ public class NumericRangeTest {
 		Set<?> validate2 = new SimpleValidator().validate(bean);
 		TestUtil.assertValid(
 				(Set<ConstraintViolation<?>>) validate2, //
-				"Campo ${br.atech.workshop.duplicateCode.validation.NumericDomainBean.overtime} deve estar entre -1000000.0 e 1000000.0.");
+				"Campo ${br.atech.workshop.duplicateCode.validation.NumericRangeBean.overtime} deve estar entre -1000000.0 e 1000000.0.");
 	}
-
-
-	@Test
-	public void testNotNull() {
-		NumericRangeBean bean = new NumericRangeBean();
-
-		Set<?> validate1 = new SimpleValidator().validate(bean);
-
-		TestUtil.assertValid(
-				(Set<ConstraintViolation<?>>) validate1,//
-				"Campo ${br.atech.workshop.duplicateCode.validation.NumericDomainBean.id} é obrigatório.");
-	}
-
 }

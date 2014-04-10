@@ -7,7 +7,7 @@ package br.atech.workshop.duplicateCode.validation;
  */
 public class NumericRangeBean implements Cloneable {
 
-	@NumericRange({ NumericRange.PreDef.NotNull, NumericRange.PreDef.Big })
+	@NumericRange({ NumericRange.PreDef.Big })
 	private Integer id;
 
 	@NumericRange({ NumericRange.PreDef.Age })

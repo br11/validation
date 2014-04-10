@@ -27,8 +27,7 @@ public @interface NumericRange {
 		Medium(-10000, +10000), //
 		Big(-1000000, +1000000), //
 		Age(0, 200), //
-		Salary(780.00, 780.99), //
-		NotNull(Double.MIN_VALUE, Double.MAX_VALUE, "Campo ${field} é obrigatório.");
+		Salary(780.00, 780.99);
 
 		private final double predefMin;
 		private final double predefMax;
@@ -51,14 +50,6 @@ public @interface NumericRange {
 		 * @return
 		 */
 		public boolean isValid(Number value, ConstraintValidatorContext context) {
-			if (!new RequiredValidator().isValid(value, context)) {
-				if (this.equals(NotNull)) {
-					return false;
-				} else {
-					return true;
-				}
-			}
-
 			boolean valid = value.doubleValue() >= predefMin
 					&& value.doubleValue() <= predefMax;
 

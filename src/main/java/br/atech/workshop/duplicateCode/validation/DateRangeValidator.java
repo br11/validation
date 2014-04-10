@@ -37,7 +37,7 @@ public class DateRangeValidator implements
 	 */
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		if (value == null || value.toString().isEmpty()) {
+		if (!new RequiredValidator().isValid(value, context)) {
 			return true;
 		}
 
@@ -48,11 +48,13 @@ public class DateRangeValidator implements
 				return false;
 			}
 		}
-		if (!annotation.min().isValidMin((Date) value, annotation.minGap())) {
+		if (!annotation.min().isValidMin((Date) value, annotation.minGap(),
+				context)) {
 			buildConstraintViolation(context, annotation.min());
 			return false;
 		}
-		if (!annotation.max().isValidMax((Date) value, annotation.maxGap())) {
+		if (!annotation.max().isValidMax((Date) value, annotation.maxGap(),
+				context)) {
 			buildConstraintViolation(context, annotation.max());
 			return false;
 		}

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.validation.Constraint;
+import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
@@ -38,8 +39,7 @@ public @interface DateRange {
 		NextYear(Calendar.YEAR, 0, 0), //
 		Past(Calendar.DAY_OF_MONTH, -999999, -1), //
 		Future(Calendar.DAY_OF_MONTH, 1, +999999), //
-		Any(Calendar.DAY_OF_MONTH, -999999, +999999), //
-		NotNull(Calendar.DAY_OF_MONTH, 0, 0);
+		Any(Calendar.DAY_OF_MONTH, -999999, +999999);
 
 		int calField;
 		int predefGap1;
@@ -63,10 +63,6 @@ public @interface DateRange {
 		 * @return
 		 */
 		public boolean isValid(Date value, int minGap, int maxGap) {
-			if (this.equals(NotNull)) {
-				return value != null;
-			}
-
 			if (value == null) {
 				return true;
 			}
@@ -80,15 +76,7 @@ public @interface DateRange {
 		 * @param value
 		 * @return
 		 */
-		public boolean isValidMin(Date value, int gap) {
-			if (this.equals(NotNull)) {
-				return value != null;
-			}
-
-			if (value == null) {
-				return true;
-			}
-
+		public boolean isValidMin(Date value, int gap, ConstraintValidatorContext context) {
 			return value.compareTo(getMinDate(gap)) >= 0;
 		}
 
@@ -97,15 +85,7 @@ public @interface DateRange {
 		 * @param value
 		 * @return
 		 */
-		public boolean isValidMax(Date value, int gap) {
-			if (this.equals(NotNull)) {
-				return value != null;
-			}
-
-			if (value == null) {
-				return true;
-			}
-
+		public boolean isValidMax(Date value, int gap, ConstraintValidatorContext context) {
 			return value.compareTo(getMaxDate(gap)) <= 0;
 		}
 

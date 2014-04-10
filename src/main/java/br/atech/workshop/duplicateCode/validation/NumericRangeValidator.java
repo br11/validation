@@ -38,6 +38,9 @@ public class NumericRangeValidator implements
 	 */
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
+		if (!new RequiredValidator().isValid(value, context)) {
+			return true;
+		}
 
 		for (PreDef predef : annotation.value()) {
 			if (!predef.isValid((Number) value, context)) {
@@ -46,10 +49,6 @@ public class NumericRangeValidator implements
 						predef.getErrorMessage()).addConstraintViolation();
 				return false;
 			}
-		}
-
-		if (!new RequiredValidator().isValid(value, context)) {
-			return true;
 		}
 
 		return ((Number) value).doubleValue() >= annotation.min()

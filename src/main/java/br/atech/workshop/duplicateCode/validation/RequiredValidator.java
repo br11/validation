@@ -7,8 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 
 public class RequiredValidator implements ConstraintValidator<Required, Object> {
 
-	private Required annotation;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -18,7 +16,7 @@ public class RequiredValidator implements ConstraintValidator<Required, Object> 
 	 */
 	@Override
 	public void initialize(Required annotation) {
-		this.annotation = annotation;
+
 	}
 
 	/*
@@ -29,7 +27,6 @@ public class RequiredValidator implements ConstraintValidator<Required, Object> 
 	 */
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-
 		if (value == null) {
 			return false;
 		} else if (value instanceof String) {
