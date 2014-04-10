@@ -3,19 +3,19 @@ package br.atech.workshop.duplicateCode.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.atech.workshop.duplicateCode.validation.NumericDomain.PreDef;
+import br.atech.workshop.duplicateCode.validation.NumericRange.PreDef;
 
 /**
  * 
  * @author marcio
  * 
  */
-public class NumericDomainValidator implements
-		ConstraintValidator<NumericDomain, Object> {
+public class NumericRangeValidator implements
+		ConstraintValidator<NumericRange, Object> {
 
 	private RequiredValidator requiredValidator = new RequiredValidator();
 
-	private NumericDomain annotation;
+	private NumericRange annotation;
 
 	/*
 	 * (non-Javadoc)
@@ -25,7 +25,7 @@ public class NumericDomainValidator implements
 	 * Annotation)
 	 */
 	@Override
-	public void initialize(NumericDomain annotation) {
+	public void initialize(NumericRange annotation) {
 		this.requiredValidator.initialize(null);
 		this.annotation = annotation;
 	}

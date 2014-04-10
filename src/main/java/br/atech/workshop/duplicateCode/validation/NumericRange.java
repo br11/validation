@@ -16,8 +16,8 @@ import javax.validation.Payload;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NumericDomainValidator.class)
-public @interface NumericDomain {
+@Constraint(validatedBy = NumericRangeValidator.class)
+public @interface NumericRange {
 
 	/**
 	 * 

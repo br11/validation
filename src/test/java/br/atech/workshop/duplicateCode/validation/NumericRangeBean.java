@@ -5,21 +5,21 @@ package br.atech.workshop.duplicateCode.validation;
  * @author marcio
  * 
  */
-public class NumericDomainBean implements Cloneable {
+public class NumericRangeBean implements Cloneable {
 
-	@NumericDomain({ NumericDomain.PreDef.NotNull, NumericDomain.PreDef.Big })
+	@NumericRange({ NumericRange.PreDef.NotNull, NumericRange.PreDef.Big })
 	private Integer id;
 
-	@NumericDomain({ NumericDomain.PreDef.Age })
+	@NumericRange({ NumericRange.PreDef.Age })
 	private Integer age;
 
-	@NumericDomain({ NumericDomain.PreDef.Salary })
+	@NumericRange({ NumericRange.PreDef.Salary })
 	private Float salary;
 
-	@NumericDomain({ NumericDomain.PreDef.Big })
+	@NumericRange({ NumericRange.PreDef.Big })
 	private Double overtime;
 
-	public NumericDomainBean() {
+	public NumericRangeBean() {
 		super();
 	}
 

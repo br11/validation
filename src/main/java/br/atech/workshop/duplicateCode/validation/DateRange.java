@@ -17,8 +17,8 @@ import javax.validation.Payload;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = DateDomainValidator.class)
-public @interface DateDomain {
+@Constraint(validatedBy = DateRangeValidator.class)
+public @interface DateRange {
 
 	/**
 	 * 
@@ -89,7 +89,7 @@ public @interface DateDomain {
 				return true;
 			}
 
-			return value.after(getMinDate(gap));
+			return value.compareTo(getMinDate(gap)) >= 0;
 		}
 
 		/**
@@ -106,7 +106,7 @@ public @interface DateDomain {
 				return true;
 			}
 
-			return value.before(getMinDate(gap));
+			return value.compareTo(getMaxDate(gap)) <= 0;
 		}
 
 		/**

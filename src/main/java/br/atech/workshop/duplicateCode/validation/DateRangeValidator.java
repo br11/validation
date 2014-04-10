@@ -5,17 +5,17 @@ import java.util.Date;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.atech.workshop.duplicateCode.validation.DateDomain.PreDef;
+import br.atech.workshop.duplicateCode.validation.DateRange.PreDef;
 
 /**
  * 
  * @author marcio
  * 
  */
-public class DateDomainValidator implements
-		ConstraintValidator<DateDomain, Object> {
+public class DateRangeValidator implements
+		ConstraintValidator<DateRange, Object> {
 
-	private DateDomain annotation;
+	private DateRange annotation;
 
 	/*
 	 * (non-Javadoc)
@@ -25,7 +25,7 @@ public class DateDomainValidator implements
 	 * Annotation)
 	 */
 	@Override
-	public void initialize(DateDomain annotation) {
+	public void initialize(DateRange annotation) {
 		this.annotation = annotation;
 	}
 

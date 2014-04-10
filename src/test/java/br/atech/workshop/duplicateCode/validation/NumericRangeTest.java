@@ -14,11 +14,11 @@ import org.junit.Test;
  * 
  */
 @SuppressWarnings("unchecked")
-public class NumericDomainTest {
+public class NumericRangeTest {
 
 	@Test
 	public void testAge() {
-		NumericDomainBean bean = new NumericDomainBean();
+		NumericRangeBean bean = new NumericRangeBean();
 		bean.setId(123);
 
 		bean.setAge(3);
@@ -34,7 +34,7 @@ public class NumericDomainTest {
 
 	@Test
 	public void testSalary() {
-		NumericDomainBean bean = new NumericDomainBean();
+		NumericRangeBean bean = new NumericRangeBean();
 		bean.setId(123);
 
 		bean.setSalary(780.00f);
@@ -51,7 +51,7 @@ public class NumericDomainTest {
 
 	@Test
 	public void testBig() {
-		NumericDomainBean bean = new NumericDomainBean();
+		NumericRangeBean bean = new NumericRangeBean();
 		bean.setId(123);
 
 		bean.setOvertime(0.0);
@@ -68,7 +68,7 @@ public class NumericDomainTest {
 
 	@Test
 	public void testNotNull() {
-		NumericDomainBean bean = new NumericDomainBean();
+		NumericRangeBean bean = new NumericRangeBean();
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
