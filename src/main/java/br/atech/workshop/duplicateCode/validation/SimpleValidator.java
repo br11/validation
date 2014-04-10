@@ -50,20 +50,6 @@ public class SimpleValidator implements Validator {
 		return transform(validator.validate(object, groups));
 	}
 
-	/**
-	 * 
-	 * @param object
-	 * @param groups
-	 */
-	public <T> void assertValid(T object, Class<?>... groups) {
-		Set<ConstraintViolation<T>> constraintViolations = validate(object);
-		if (!constraintViolations.isEmpty()) {
-			throw new ConstraintViolationException(
-					"Dados incompletos ou inconsistentes.",
-					constraintViolations);
-		}
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -134,6 +120,20 @@ public class SimpleValidator implements Validator {
 		}
 
 		return transformed;
+	}
+
+	/**
+	 * 
+	 * @param object
+	 * @param groups
+	 */
+	public <T> void assertValid(T object, Class<?>... groups) {
+		Set<ConstraintViolation<T>> constraintViolations = validate(object);
+		if (!constraintViolations.isEmpty()) {
+			throw new ConstraintViolationException(
+					"Dados incompletos ou inconsistentes.",
+					constraintViolations);
+		}
 	}
 
 }
