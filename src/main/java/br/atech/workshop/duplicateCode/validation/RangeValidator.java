@@ -3,19 +3,16 @@ package br.atech.workshop.duplicateCode.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.atech.workshop.duplicateCode.validation.NumericRange.PreDef;
-
 /**
  * 
  * @author marcio
  * 
  */
-public class NumericRangeValidator implements
-		ConstraintValidator<NumericRange, Object> {
+public class RangeValidator implements ConstraintValidator<Range, Object> {
 
 	private RequiredValidator requiredValidator = new RequiredValidator();
 
-	private NumericRange annotation;
+	private Range annotation;
 
 	/*
 	 * (non-Javadoc)
@@ -25,7 +22,7 @@ public class NumericRangeValidator implements
 	 * Annotation)
 	 */
 	@Override
-	public void initialize(NumericRange annotation) {
+	public void initialize(Range annotation) {
 		this.requiredValidator.initialize(null);
 		this.annotation = annotation;
 	}
@@ -42,16 +39,9 @@ public class NumericRangeValidator implements
 			return true;
 		}
 
-		for (PreDef predef : annotation.value()) {
-			if (!predef.isValid((Number) value, context)) {
-				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate(
-						predef.getErrorMessage()).addConstraintViolation();
-				return false;
-			}
-		}
+		Number numValue = (Number) value;
 
-		return ((Number) value).doubleValue() >= annotation.min()
-				&& ((Number) value).doubleValue() <= annotation.max();
+		return (numValue).doubleValue() >= annotation.min()
+				&& (numValue).doubleValue() <= annotation.max();
 	}
 }

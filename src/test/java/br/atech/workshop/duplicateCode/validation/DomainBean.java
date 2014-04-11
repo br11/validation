@@ -9,26 +9,26 @@ import java.util.Date;
  */
 public class DomainBean implements Cloneable {
 
-	@Domain(Domain.PreDef.NotNull)
+	@Numeric(Numeric.PreDef.NotNull)
 	private Integer id;
 
-	@Domain({ Domain.PreDef.NotNull, Domain.PreDef.Name })
+	@Numeric({ Numeric.PreDef.NotNull, Numeric.PreDef.Name })
 	private String name;
 
 	private Date birthDate;
 
-	@Domain({ Domain.PreDef.Alfa })
+	@Numeric({ Numeric.PreDef.Alfa })
 	private String text1;
 
-	@Domain({ Domain.PreDef.Alfanum })
+	@Numeric({ Numeric.PreDef.Alfanum })
 	private String text2;
 
-	@Domain({ Domain.PreDef.Any })
+	@Numeric({ Numeric.PreDef.Any })
 	private String text3;
 
 	private String text4;
 
-	@Domain({ Domain.PreDef.Text })
+	@Numeric({ Numeric.PreDef.Text })
 	private String text5;
 
 	private String text6;

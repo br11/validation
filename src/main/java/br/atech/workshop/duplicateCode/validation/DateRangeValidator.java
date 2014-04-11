@@ -40,20 +40,22 @@ public class DateRangeValidator implements
 		if (!new RequiredValidator().isValid(value, context)) {
 			return true;
 		}
+		
+		Date dateValue = (Date) value;
 
 		for (PreDef predef : annotation.value()) {
-			if (!predef.isValid((Date) value, annotation.minGap(),
+			if (!predef.isValid(dateValue, annotation.minGap(),
 					annotation.maxGap())) {
 				buildConstraintViolation(context, predef);
 				return false;
 			}
 		}
-		if (!annotation.min().isValidMin((Date) value, annotation.minGap(),
+		if (!annotation.min().isValidMin(dateValue, annotation.minGap(),
 				context)) {
 			buildConstraintViolation(context, annotation.min());
 			return false;
 		}
-		if (!annotation.max().isValidMax((Date) value, annotation.maxGap(),
+		if (!annotation.max().isValidMax(dateValue, annotation.maxGap(),
 				context)) {
 			buildConstraintViolation(context, annotation.max());
 			return false;
