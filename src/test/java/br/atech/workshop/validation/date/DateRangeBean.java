@@ -35,8 +35,11 @@ public class DateRangeBean implements Cloneable {
 	@DateRange(min = Ranges.Today, max = Ranges.ThisYear)
 	private Date date10;
 
-	@DateRange(min = Ranges.Now, minGap = -45, maxGap = 120 * 60)
+	@DateRange(value = Ranges.Now, minGap = -45, maxGap = 120 * 60)
 	private Date date11;
+
+	@DateRange(value = Ranges.FPL)
+	private Date date12;
 
 	public void setDate1(Date date1) {
 		this.date1 = date1;
@@ -138,5 +141,19 @@ public class DateRangeBean implements Cloneable {
 	 */
 	public void setDate11(Date date11) {
 		this.date11 = date11;
+	}
+
+	/**
+	 * @return the date12
+	 */
+	public Date getDate12() {
+		return date12;
+	}
+
+	/**
+	 * @param date12 the date12 to set
+	 */
+	public void setDate12(Date date12) {
+		this.date12 = date12;
 	}
 }

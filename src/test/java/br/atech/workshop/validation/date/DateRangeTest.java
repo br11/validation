@@ -331,7 +331,7 @@ public class DateRangeTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testFlightPlanDate() {
+	public void testGaps() {
 		SimpleValidator simpleValidator = new SimpleValidator();
 		DateRangeBean bean;
 		Set<?> validations;
@@ -350,15 +350,45 @@ public class DateRangeTest {
 					"br.atech.workshop.validation.date.DateRangeBean.date11");
 		}
 
-		for (int minutes = (120 * 60 + 60); minutes < (120 * 60 + 120); minutes += 1) {
-			System.out.println(minutes); 
+		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
+			System.out.println(minutes);
 			bean = new DateRangeBean();
 			bean.setDate11(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
 					"br.atech.workshop.validation.date.DateRangeBean.date11");
 		}
+	}
 
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testFPL() {
+		SimpleValidator simpleValidator = new SimpleValidator();
+		DateRangeBean bean;
+		Set<?> validations;
+		for (int minutes = -45; minutes <= (120 * 60); minutes += 5) {
+			bean = new DateRangeBean();
+			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
+			validations = simpleValidator.validate(bean);
+			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations);
+		}
+
+		for (int minutes = -60; minutes < -45; minutes += 1) {
+			bean = new DateRangeBean();
+			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
+			validations = simpleValidator.validate(bean);
+			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
+					"br.atech.workshop.validation.date.DateRangeBean.date12");
+		}
+
+		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
+			System.out.println(minutes);
+			bean = new DateRangeBean();
+			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
+			validations = simpleValidator.validate(bean);
+			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
+					"br.atech.workshop.validation.date.DateRangeBean.date12");
+		}
 	}
 
 }

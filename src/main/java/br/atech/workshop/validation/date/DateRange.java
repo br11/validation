@@ -46,7 +46,9 @@ public @interface DateRange {
 
 		ThisYear(Calendar.YEAR, 0, 0), //
 		LastYear(Calendar.YEAR, -1, -1), //
-		NextYear(Calendar.YEAR, +1, +1); //
+		NextYear(Calendar.YEAR, +1, +1), //
+
+		FPL(Calendar.MINUTE, -45, 120 * 60); //
 
 		private int predefGapField;
 		private int predefGap1;
