@@ -24,12 +24,12 @@ public class JavaxValidationTest {
 
 		bean.setNumber1(new BigDecimal("123456789012345678901234567890"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+//		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber1(new BigDecimal("1234567890123456789012345678901"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -41,12 +41,12 @@ public class JavaxValidationTest {
 
 		bean.setNumber2(new BigDecimal("-12345678901234567890123456789"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber2(new BigDecimal("-123456789012345678901234567891"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -61,22 +61,22 @@ public class JavaxValidationTest {
 
 		bean.setNumber3(12345.67);
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber3(1234.5);
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber3(123456.7);
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
 		bean.setNumber3(1234.567);
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
 		// BigDecimal
@@ -84,22 +84,22 @@ public class JavaxValidationTest {
 
 		bean.setNumber4(new BigDecimal("12345.67"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber4(new BigDecimal("1234.5"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setNumber4(new BigDecimal("123456.7"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
 		bean.setNumber4(new BigDecimal("1234.567"));
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -111,12 +111,12 @@ public class JavaxValidationTest {
 
 		bean.setText1("");
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setText1(null);
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -128,22 +128,22 @@ public class JavaxValidationTest {
 
 		bean.setText2("a");
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setText2(" a ");
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setText2("");
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
 		bean.setText2(" ");
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -155,12 +155,12 @@ public class JavaxValidationTest {
 
 		bean.setDate1(new Date(System.currentTimeMillis()-1));;
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setDate1(new Date(System.currentTimeMillis()+1));;
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
@@ -172,12 +172,12 @@ public class JavaxValidationTest {
 
 		bean.setDate2(new Date(System.currentTimeMillis()+100));;
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
 		bean.setDate2(new Date(System.currentTimeMillis()-1));;
 		validations = validator.validate(bean);
-		System.out.println(validations);
+		//System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 

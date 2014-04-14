@@ -351,7 +351,6 @@ public class DateRangeTest {
 		}
 
 		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
-			System.out.println(minutes);
 			bean = new DateRangeBean();
 			bean.setDate11(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
@@ -382,7 +381,6 @@ public class DateRangeTest {
 		}
 
 		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
-			System.out.println(minutes);
 			bean = new DateRangeBean();
 			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);

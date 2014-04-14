@@ -19,9 +19,9 @@ public class TestUtil {
 	public static void assertValid(Set<ConstraintViolation<?>> validations,
 			String... fields) {
 
-		for (ConstraintViolation<?> constraintViolation : validations) {
-			System.out.println(constraintViolation);
-		}
+//		for (ConstraintViolation<?> constraintViolation : validations) {
+//			System.out.println(constraintViolation);
+//		}
 
 		Assert.assertEquals("número de violações inesperado.",
 				fields.length, validations.size());
