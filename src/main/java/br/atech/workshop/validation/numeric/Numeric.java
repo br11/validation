@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.numeric;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,12 +15,20 @@ import javax.validation.Payload;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = RequiredValidator.class)
-public @interface Required {
+@Constraint(validatedBy = NumericValidator.class)
+public @interface Numeric {
 
-	String message() default "Campo ${field} é obrigatório."; 
+	public static final String CURRENCY = "#########.##";
+
+	String message() default "{javax.validation.constraints.Digits.message}";
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
+
+	String value();
+
+	double min() default Double.MIN_VALUE;
+
+	double max() default Double.MAX_VALUE;
 }

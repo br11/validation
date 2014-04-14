@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.required;
 
 import java.util.Date;
 import java.util.Set;
@@ -9,6 +9,9 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import org.junit.Test;
+
+import br.atech.workshop.validation.TestUtil;
+import br.atech.workshop.validation.validator.SimpleValidator;
 
 /**
  * @author marcio
@@ -25,9 +28,9 @@ public class RequitedTest {
 
 		TestUtil.assertValid(
 				(Set<ConstraintViolation<?>>) validate1,
-				"Campo ${br.atech.workshop.duplicateCode.validation.RequiredBean.id} é obrigatório.",//
-				"Campo ${br.atech.workshop.duplicateCode.validation.RequiredBean.birthDate} é obrigatório.",//
-				"Campo ${br.atech.workshop.duplicateCode.validation.RequiredBean.name} é obrigatório.");
+				"br.atech.workshop.validation.required.RequiredBean.id",//
+				"br.atech.workshop.validation.required.RequiredBean.birthDate",//
+				"br.atech.workshop.validation.required.RequiredBean.name");
 	}
 
 	@Test
@@ -38,9 +41,8 @@ public class RequitedTest {
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
-		TestUtil.assertValid(
-				(Set<ConstraintViolation<?>>) validate1,//
-				"Campo ${br.atech.workshop.duplicateCode.validation.RequiredBean.name} é obrigatório.");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1,//
+				"br.atech.workshop.validation.required.RequiredBean.name");
 	}
 
 	@Test
@@ -64,8 +66,7 @@ public class RequitedTest {
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
-		TestUtil.assertValid(
-				(Set<ConstraintViolation<?>>) validate1,//
-				"Campo ${br.atech.workshop.duplicateCode.validation.RequiredBean.name} é obrigatório.");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1,//
+				"br.atech.workshop.validation.required.RequiredBean.name");
 	}
 }

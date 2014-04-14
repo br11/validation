@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.numeric;
 
 /**
  * 
@@ -7,23 +7,26 @@ package br.atech.workshop.duplicateCode.validation;
  */
 public class NumericBean implements Cloneable {
 
-	@Numeric("000")
+	@Numeric("#")
 	private Integer number1;
 
-	@Numeric("#00")
+	@Numeric("##")
 	private Integer number2;
 
-	@Numeric("##0")
+	@Numeric("###")
 	private Integer number3;
 
-	@Numeric("#00")
+	@Numeric("###")
 	private Double number4;
 
-	@Numeric("##0.00")
+	@Numeric("###.#")
 	private Double number5;
 
-	@Numeric("##0.0#")
+	@Numeric("###.##")
 	private Double number6;
+
+	@Numeric(value = "###.##", max = 98)
+	private Double number7;
 
 	public Integer getNumber1() {
 		return number1;
@@ -71,6 +74,21 @@ public class NumericBean implements Cloneable {
 
 	public void setNumber6(Double number6) {
 		this.number6 = number6;
+	}
+
+	/**
+	 * @return the number7
+	 */
+	public Double getNumber7() {
+		return number7;
+	}
+
+	/**
+	 * @param number7
+	 *            the number7 to set
+	 */
+	public void setNumber7(Double number7) {
+		this.number7 = number7;
 	}
 
 }

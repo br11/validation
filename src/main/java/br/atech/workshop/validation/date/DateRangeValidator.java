@@ -1,11 +1,12 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.date;
 
 import java.util.Date;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.atech.workshop.duplicateCode.validation.DateRange.PreDef;
+import br.atech.workshop.validation.date.DateRange.Ranges;
+import br.atech.workshop.validation.required.RequiredValidator;
 
 /**
  * 
@@ -40,12 +41,12 @@ public class DateRangeValidator implements
 		if (!new RequiredValidator().isValid(value, context)) {
 			return true;
 		}
-		
+
 		Date dateValue = (Date) value;
 
-		for (PreDef predef : annotation.value()) {
+		for (Ranges predef : annotation.value()) {
 			if (!predef.isValid(dateValue, annotation.minGap(),
-					annotation.maxGap())) {
+					annotation.maxGap(), context)) {
 				buildConstraintViolation(context, predef);
 				return false;
 			}
@@ -65,7 +66,7 @@ public class DateRangeValidator implements
 	}
 
 	private void buildConstraintViolation(ConstraintValidatorContext context,
-			PreDef predef) {
+			Ranges predef) {
 		context.disableDefaultConstraintViolation();
 		context.buildConstraintViolationWithTemplate(predef.getErrorMessage())
 				.addConstraintViolation();

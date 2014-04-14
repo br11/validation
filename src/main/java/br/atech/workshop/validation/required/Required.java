@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.required;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,16 +15,12 @@ import javax.validation.Payload;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = RangeValidator.class)
-public @interface Range {
+@Constraint(validatedBy = RequiredValidator.class)
+public @interface Required {
 
-	String message() default "O valor informado no campo {field} está fora dos limites permitidos.";
+	String message() default "{javax.validation.constraints.NotNull.message}"; 
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-
-	double min() default Integer.MIN_VALUE;
-
-	double max() default Integer.MAX_VALUE;
 }

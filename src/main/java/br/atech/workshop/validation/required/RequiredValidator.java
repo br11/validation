@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.required;
 
 import java.util.Collection;
 

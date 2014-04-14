@@ -1,7 +1,9 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
+import br.atech.workshop.validation.required.RequiredValidator;
 
 /**
  * 

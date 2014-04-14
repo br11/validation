@@ -1,6 +1,8 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.required;
 
 import java.util.Date;
+
+import br.atech.workshop.validation.required.Required;
 
 /**
  * 

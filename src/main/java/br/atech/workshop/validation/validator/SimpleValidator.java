@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.validator;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -17,25 +17,27 @@ import org.junit.Assert;
 public class TestUtil {
 
 	public static void assertValid(Set<ConstraintViolation<?>> validations,
-			String... expectedMessages) {
+			String... fields) {
+
+		for (ConstraintViolation<?> constraintViolation : validations) {
+			System.out.println(constraintViolation);
+		}
 
 		Assert.assertEquals("número de violações inesperado.",
-				expectedMessages.length, validations.size());
+				fields.length, validations.size());
 
-		Set<String> messages = getMessages(validations);
-		for (String expectedMessage : expectedMessages) {
+		Set<String> messages = getFields(validations);
+		for (String expectedMessage : fields) {
 			Assert.assertTrue("Violação esperada não encontrada: "
 					+ expectedMessage, messages.contains(expectedMessage));
 		}
 	}
 
-	public static Set<String> getMessages(
+	public static Set<String> getFields(
 			Set<ConstraintViolation<?>> validations) {
 		Set<String> messages = new LinkedHashSet<>();
 		for (ConstraintViolation<?> constraintViolation : validations) {
-			System.out.println(constraintViolation);
-
-			messages.add(constraintViolation.getMessage());
+			messages.add(constraintViolation.getPropertyPath().toString());
 		}
 		return messages;
 	}

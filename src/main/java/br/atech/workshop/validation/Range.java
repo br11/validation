@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,14 +15,16 @@ import javax.validation.Payload;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NumericValidator.class)
-public @interface Numeric {
+@Constraint(validatedBy = RangeValidator.class)
+public @interface Range {
 
-	String message() default "O valor informado no campo ${field} não está no formato requerido.";
+	String message() default "{br.atech.workshop.validation.Range.message}";
 
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
 
-	String value();
+	double min() default Integer.MIN_VALUE;
+
+	double max() default Integer.MAX_VALUE;
 }

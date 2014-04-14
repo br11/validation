@@ -1,10 +1,11 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation.validator;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.validation.ConstraintViolation;
@@ -24,11 +25,33 @@ final class ConstraintViolationWrapper<T> implements ConstraintViolation<T> {
 	 */
 	private final ConstraintViolation<T> violation;
 
+	private Path propertyPath;
+
 	/**
 	 * @param guiValidator
 	 */
 	public ConstraintViolationWrapper(ConstraintViolation<T> violation) {
 		this.violation = violation;
+
+		propertyPath = new Path() {
+
+			@Override
+			public Iterator<Path.Node> iterator() {
+				return ConstraintViolationWrapper.this.violation
+						.getPropertyPath().iterator();
+			}
+
+			@Override
+			public String toString() {
+				String className = ConstraintViolationWrapper.this.violation
+						.getLeafBean().getClass().getName();
+				String propertyName = ConstraintViolationWrapper.this.violation
+						.getPropertyPath().toString();
+				String fullPath = className + "." + propertyName;
+				return fullPath;
+			}
+		};
+
 	}
 
 	/*
@@ -88,15 +111,7 @@ final class ConstraintViolationWrapper<T> implements ConstraintViolation<T> {
 	 */
 	@Override
 	public String getMessage() {
-
-		String className = this.violation.getLeafBean().getClass().getName();
-		String propertyName = this.violation.getPropertyPath().toString();
-		String fullPath = "\\${" + className + "." + propertyName + "}";
-
-		String message = this.violation.getMessage().replaceAll("\\$\\{field\\}",
-				fullPath); 
-
-		return message;
+		return this.violation.getMessage();
 	}
 
 	/*
@@ -116,7 +131,7 @@ final class ConstraintViolationWrapper<T> implements ConstraintViolation<T> {
 	 */
 	@Override
 	public Path getPropertyPath() {
-		return this.violation.getPropertyPath();
+		return propertyPath;
 	}
 
 	/*

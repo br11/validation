@@ -1,4 +1,4 @@
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation;
 
 import java.math.BigDecimal;
 import java.util.Date;

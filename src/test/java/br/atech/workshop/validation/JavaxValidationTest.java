@@ -1,8 +1,7 @@
-/**
- * 
- */
-package br.atech.workshop.duplicateCode.validation;
+package br.atech.workshop.validation;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -11,156 +10,175 @@ import javax.validation.Validator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * @author marcio
- * 
- */
-public class NumericTest {
+import br.atech.workshop.validation.validator.SimpleValidator;
+
+public class JavaxValidationTest {
 
 	Validator validator = new SimpleValidator();
 
 	@Test
-	public void testIntegerDigits() {
-		NumericBean bean;
+	public void testDecimalMax() {
+		JavaxValidationBean bean = new JavaxValidationBean();
 
-		Set<ConstraintViolation<NumericBean>> validations;
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
 
-		//
-		bean = new NumericBean();
-
-		bean.setNumber1(123);
+		bean.setNumber1(new BigDecimal("123456789012345678901234567890"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
-		bean.setNumber1(12);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber1(1234);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		//
-		bean = new NumericBean();
-
-		bean.setNumber2(123);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertTrue(validations.isEmpty());
-
-		bean.setNumber2(12);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertTrue(validations.isEmpty());
-
-		bean.setNumber2(1);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber2(1234);
+		bean.setNumber1(new BigDecimal("1234567890123456789012345678901"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
 	@Test
-	public void testDecimalDigitsNoFraction() {
-		NumericBean bean;
+	public void testDecimalMin() {
+		JavaxValidationBean bean = new JavaxValidationBean();
 
-		Set<ConstraintViolation<NumericBean>> validations;
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
 
-		//
-		bean = new NumericBean();
-
-		bean.setNumber4(123.0);
+		bean.setNumber2(new BigDecimal("-12345678901234567890123456789"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
-		bean.setNumber4(12.0);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertTrue(validations.isEmpty());
-
-		bean.setNumber4(1.0);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber4(1234.0);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber4(123.4);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber4(12.3);
-		validations = validator.validate(bean);
-		System.out.println(validations);
-		Assert.assertFalse(validations.isEmpty());
-
-		bean.setNumber4(1.23);
+		bean.setNumber2(new BigDecimal("-123456789012345678901234567891"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 	}
 
 	@Test
-	public void testDecimalDigits() {
-		NumericBean bean;
+	public void testDigits() {
+		JavaxValidationBean bean;
+		
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
 
-		Set<ConstraintViolation<NumericBean>> validations;
+		// Double
+		bean = new JavaxValidationBean();
 
-		//
-		bean = new NumericBean();
-
-		bean.setNumber5(123.45);
+		bean.setNumber3(12345.67);
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
-		bean.setNumber5(12.34);
+		bean.setNumber3(1234.5);
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
-		bean.setNumber5(1.23);
+		bean.setNumber3(123456.7);
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertFalse(validations.isEmpty());
+
+		bean.setNumber3(1234.567);
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertFalse(validations.isEmpty());
+
+		// BigDecimal
+		bean = new JavaxValidationBean();
+
+		bean.setNumber4(new BigDecimal("12345.67"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertTrue(validations.isEmpty());
 
-		bean.setNumber5(1.2);
+		bean.setNumber4(new BigDecimal("1234.5"));
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setNumber4(new BigDecimal("123456.7"));
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
-		bean.setNumber5(1.0);
+		bean.setNumber4(new BigDecimal("1234.567"));
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertFalse(validations.isEmpty());
+	}
+
+	@Test
+	public void testNotNull() {
+		JavaxValidationBean bean = new JavaxValidationBean();
+
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
+
+		bean.setText1("");
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setText1(null);
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertFalse(validations.isEmpty());
+	}
+
+	@Test
+	public void testPattern() {
+		JavaxValidationBean bean = new JavaxValidationBean();
+
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
+
+		bean.setText2("a");
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setText2(" a ");
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setText2("");
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
 
-		bean.setNumber5(1234.0);
+		bean.setText2(" ");
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
+	}
 
-		bean.setNumber5(1.234);
+	@Test
+	public void testPast() {
+		JavaxValidationBean bean = new JavaxValidationBean();
+
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
+
+		bean.setDate1(new Date(System.currentTimeMillis()-1));;
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setDate1(new Date(System.currentTimeMillis()+1));;
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
+	}
 
-		bean.setNumber5(1.0);
+	@Test
+	public void testFuture() {
+		JavaxValidationBean bean = new JavaxValidationBean();
+
+		Set<ConstraintViolation<JavaxValidationBean>> validations;
+
+		bean.setDate2(new Date(System.currentTimeMillis()+100));;
+		validations = validator.validate(bean);
+		System.out.println(validations);
+		Assert.assertTrue(validations.isEmpty());
+
+		bean.setDate2(new Date(System.currentTimeMillis()-1));;
 		validations = validator.validate(bean);
 		System.out.println(validations);
 		Assert.assertFalse(validations.isEmpty());
-
 	}
 
 }
