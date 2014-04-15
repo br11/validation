@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.atech.workshop.validation.TestUtil;
+import br.atech.workshop.validation.util.NumericUtil;
 import br.atech.workshop.validation.validator.SimpleValidator;
 
 /**
@@ -20,54 +21,55 @@ import br.atech.workshop.validation.validator.SimpleValidator;
 public class NumericTest {
 
 	NumericValidator validator = new NumericValidator();
-
+	NumericUtil util = new NumericUtil();
+	
 	@Test
 	public void testDoubleFraction() {
-		Assert.assertTrue(validator.verifyFraction(24.4, 1));
-		Assert.assertFalse(validator.verifyFraction(24.4, 0));
-		Assert.assertTrue(validator.verifyFraction(24.45678, 5));
-		Assert.assertFalse(validator.verifyFraction(24.45678, 4));
+		Assert.assertTrue(util.isValidFraction(24.4, 1));
+		Assert.assertFalse(util.isValidFraction(24.4, 0));
+		Assert.assertTrue(util.isValidFraction(24.45678, 5));
+		Assert.assertFalse(util.isValidFraction(24.45678, 4));
 
 	}
 
 	@Test
 	public void testFloatFraction() {
-		Assert.assertTrue(validator.verifyFraction(24.4f, 1));
-		Assert.assertFalse(validator.verifyFraction(24.4f, 0));
-		Assert.assertTrue(validator.verifyFraction(24.45678f, 5));
-		Assert.assertFalse(validator.verifyFraction(24.45678f, 4));
+		Assert.assertTrue(util.isValidFraction(24.4f, 1));
+		Assert.assertFalse(util.isValidFraction(24.4f, 0));
+		Assert.assertTrue(util.isValidFraction(24.45678f, 5));
+		Assert.assertFalse(util.isValidFraction(24.45678f, 4));
 	}
 
 	@Test
 	public void testIntegerFraction() {
-		Assert.assertTrue(validator.verifyFraction(24, 1));
-		Assert.assertTrue(validator.verifyFraction(24, 0));
-		Assert.assertTrue(validator.verifyFraction(24, 5));
-		Assert.assertTrue(validator.verifyFraction(24, 4));
+		Assert.assertTrue(util.isValidFraction(24, 1));
+		Assert.assertTrue(util.isValidFraction(24, 0));
+		Assert.assertTrue(util.isValidFraction(24, 5));
+		Assert.assertTrue(util.isValidFraction(24, 4));
 	}
 
 	@Test
 	public void testLongFraction() {
-		Assert.assertTrue(validator.verifyFraction(24l, 1));
-		Assert.assertTrue(validator.verifyFraction(24l, 0));
-		Assert.assertTrue(validator.verifyFraction(24l, 5));
-		Assert.assertTrue(validator.verifyFraction(24l, 4));
+		Assert.assertTrue(util.isValidFraction(24l, 1));
+		Assert.assertTrue(util.isValidFraction(24l, 0));
+		Assert.assertTrue(util.isValidFraction(24l, 5));
+		Assert.assertTrue(util.isValidFraction(24l, 4));
 	}
 
 	@Test
 	public void testStringFraction() {
-		Assert.assertTrue(validator.verifyFraction("24.4", 1));
-		Assert.assertFalse(validator.verifyFraction("24.4", 0));
-		Assert.assertTrue(validator.verifyFraction("24.45678", 5));
-		Assert.assertFalse(validator.verifyFraction("24.45678", 4));
+		Assert.assertTrue(util.isValidFraction("24.4", 1));
+		Assert.assertFalse(util.isValidFraction("24.4", 0));
+		Assert.assertTrue(util.isValidFraction("24.45678", 5));
+		Assert.assertFalse(util.isValidFraction("24.45678", 4));
 	}
 
 	@Test
 	public void testDoubleInteger() {
-		Assert.assertTrue(validator.verifyInteger(24.4, 2));
-		Assert.assertFalse(validator.verifyInteger(24.4, 1));
-		Assert.assertTrue(validator.verifyInteger(24567.45678, 5));
-		Assert.assertFalse(validator.verifyInteger(24567.45678, 4));
+		Assert.assertTrue(util.isValidInteger(24.4, 2));
+		Assert.assertFalse(util.isValidInteger(24.4, 1));
+		Assert.assertTrue(util.isValidInteger(24567.45678, 5));
+		Assert.assertFalse(util.isValidInteger(24567.45678, 4));
 	}
 
 	@SuppressWarnings("unchecked")

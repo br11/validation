@@ -12,6 +12,7 @@ import javax.validation.ConstraintViolation;
 import org.junit.Test;
 
 import br.atech.workshop.validation.TestUtil;
+import br.atech.workshop.validation.util.DateRangeUtil;
 import br.atech.workshop.validation.validator.SimpleValidator;
 
 /**
@@ -19,7 +20,7 @@ import br.atech.workshop.validation.validator.SimpleValidator;
  * 
  */
 public class DateRangeTest {
-	private DateUtil util = new DateUtil();
+	private DateRangeUtil util = new DateRangeUtil();
 
 	@SuppressWarnings("unchecked")
 	@Test

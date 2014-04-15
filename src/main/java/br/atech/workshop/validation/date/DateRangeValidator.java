@@ -7,6 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import br.atech.workshop.validation.date.DateRange.Ranges;
 import br.atech.workshop.validation.required.RequiredValidator;
+import br.atech.workshop.validation.util.DateRangeUtil;
 
 /**
  * 
@@ -15,6 +16,8 @@ import br.atech.workshop.validation.required.RequiredValidator;
  */
 public class DateRangeValidator implements
 		ConstraintValidator<DateRange, Object> {
+
+	private DateRangeUtil util = new DateRangeUtil();
 
 	private DateRange annotation;
 
@@ -44,20 +47,15 @@ public class DateRangeValidator implements
 
 		Date dateValue = (Date) value;
 
-		for (Ranges predef : annotation.value()) {
-			if (!predef.isValid(dateValue, annotation.minGap(),
-					annotation.maxGap(), context)) {
-				buildConstraintViolation(context, predef);
-				return false;
-			}
+		if (!util.isValid(annotation, dateValue, context)) {
+			buildConstraintViolation(context, annotation.value());
+			return false;
 		}
-		if (!annotation.min().isValidMin(dateValue, annotation.minGap(),
-				context)) {
+		if (!util.isValidMin(annotation, dateValue, context)) {
 			buildConstraintViolation(context, annotation.min());
 			return false;
 		}
-		if (!annotation.max().isValidMax(dateValue, annotation.maxGap(),
-				context)) {
+		if (!util.isValidMax(annotation, dateValue, context)) {
 			buildConstraintViolation(context, annotation.max());
 			return false;
 		}
@@ -65,10 +63,17 @@ public class DateRangeValidator implements
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param context
+	 * @param ranges
+	 */
 	private void buildConstraintViolation(ConstraintValidatorContext context,
-			Ranges predef) {
+			Ranges... ranges) {
 		context.disableDefaultConstraintViolation();
-		context.buildConstraintViolationWithTemplate(predef.getErrorMessage())
-				.addConstraintViolation();
+		for (Ranges range : ranges) {
+			context.buildConstraintViolationWithTemplate(
+					range.getErrorMessage()).addConstraintViolation();
+		}
 	}
 }

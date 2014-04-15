@@ -5,10 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.validation.Constraint;
-import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
@@ -51,11 +49,9 @@ public @interface DateRange {
 		FPL(Calendar.MINUTE, -45, 120 * 60); //
 
 		private int predefGapField;
-		private int predefGap1;
-		private int predefGap2;
+		private int predefGapAmountMin;
+		private int predefGapAmountMax;
 		private int gapField;
-
-		private DateUtil util = new DateUtil();
 
 		private Ranges() {
 
@@ -64,87 +60,28 @@ public @interface DateRange {
 		/**
 		 * 
 		 * @param predefGapField
-		 * @param predefGap1
-		 * @param predefGap2
+		 * @param predefGapAmountMin
+		 * @param predefGapAmountMax
 		 */
-		private Ranges(int predefGapField, int predefGap1, int predefGap2) {
-			this(predefGapField, predefGap1, predefGap2, predefGapField);
-		}
-
-		/**
-		 * 
-		 * @param predefGapField
-		 * @param predefGap1
-		 * @param predefGap2
-		 * @param gapField
-		 */
-		private Ranges(int predefGapField, int predefGap1, int predefGap2,
-				int gapField) {
-			this.predefGapField = predefGapField;
-			this.predefGap1 = predefGap1;
-			this.predefGap2 = predefGap2;
-			this.gapField = gapField;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 * @return
-		 */
-		public boolean isValid(Date value, int minGap, int maxGap,
-				ConstraintValidatorContext context) {
-			if (value == null || this.equals(Any)) {
-				return true;
-			}
-
-			return isValidMin(value, minGap, context)
-					&& isValidMax(value, maxGap, context);
-		}
-
-		/**
-		 * 
-		 * @param value
-		 * @return
-		 */
-		public boolean isValidMin(Date value, int gap,
-				ConstraintValidatorContext context) {
-			if (value == null || this.equals(Any)) {
-				return true;
-			}
-			return value.compareTo(getMinDate(gap)) >= 0;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 * @return
-		 */
-		public boolean isValidMax(Date value, int gap,
-				ConstraintValidatorContext context) {
-			if (value == null || this.equals(Any)) {
-				return true;
-			}
-			return value.compareTo(getMaxDate(gap)) <= 0;
-		}
-
-		/**
-		 * 
-		 * @return
-		 */
-		public Date getMinDate(int gap) {
-			return util.floor(util.add(util.add(Calendar.getInstance()
-					.getTime(), predefGapField, predefGap1), gapField, gap),
+		private Ranges(int predefGapField, int predefGapAmountMin,
+				int predefGapAmountMax) {
+			this(predefGapField, predefGapAmountMin, predefGapAmountMax,
 					predefGapField);
 		}
 
 		/**
 		 * 
-		 * @return
+		 * @param predefGapField
+		 * @param predefGapAmountMin
+		 * @param predefGapAmountMax
+		 * @param gapField
 		 */
-		public Date getMaxDate(int gap) {
-			return util.ceil(util.add(util.add(
-					Calendar.getInstance().getTime(), predefGapField,
-					predefGap2), gapField, gap), predefGapField);
+		private Ranges(int predefGapField, int predefGapAmountMin,
+				int predefGapAmountMax, int gapField) {
+			this.predefGapField = predefGapField;
+			this.predefGapAmountMin = predefGapAmountMin;
+			this.predefGapAmountMax = predefGapAmountMax;
+			this.gapField = gapField;
 		}
 
 		/**
@@ -152,6 +89,66 @@ public @interface DateRange {
 		 */
 		public String getErrorMessage() {
 			return getClass().getName() + "." + name();
+		}
+
+		/**
+		 * @return the predefGapField
+		 */
+		public int getPredefGapField() {
+			return predefGapField;
+		}
+
+		/**
+		 * @param predefGapField
+		 *            the predefGapField to set
+		 */
+		public void setPredefGapField(int predefGapField) {
+			this.predefGapField = predefGapField;
+		}
+
+		/**
+		 * @return the predefGapAmountMin
+		 */
+		public int getPredefGapAmountMin() {
+			return predefGapAmountMin;
+		}
+
+		/**
+		 * @param predefGapAmountMin
+		 *            the predefGapAmountMin to set
+		 */
+		public void setPredefGapAmountMin(int predefGapAmountMin) {
+			this.predefGapAmountMin = predefGapAmountMin;
+		}
+
+		/**
+		 * @return the predefGapAmountMax
+		 */
+		public int getPredefGapAmountMax() {
+			return predefGapAmountMax;
+		}
+
+		/**
+		 * @param predefGapAmountMax
+		 *            the predefGapAmountMax to set
+		 */
+		public void setPredefGapAmountMax(int predefGapAmountMax) {
+			this.predefGapAmountMax = predefGapAmountMax;
+		}
+
+		/**
+		 * @return the gapField
+		 */
+		public int getGapField() {
+			return gapField;
+		}
+
+		/**
+		 * @param gapField
+		 *            the gapField to set
+		 */
+		public void setGapField(int gapField) {
+			this.gapField = gapField;
 		}
 
 	}
