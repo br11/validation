@@ -54,14 +54,12 @@ public class DateRangeTest {
 		bean = new DateRangeBean();
 		bean.setDate1(new Date());
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date1");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date1");
 
 		bean = new DateRangeBean();
 		bean.setDate1(util.add(new Date(), Calendar.DAY_OF_MONTH, +1));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date1");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date1");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -81,14 +79,12 @@ public class DateRangeTest {
 		bean = new DateRangeBean();
 		bean.setDate3(new Date());
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date3");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date3");
 
 		bean = new DateRangeBean();
 		bean.setDate3(util.add(new Date(), Calendar.DAY_OF_MONTH, -1));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date3");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date3");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -103,7 +99,7 @@ public class DateRangeTest {
 			bean.setDate4(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date4");
+					"date4");
 		}
 
 		for (int days = 0; days <= 2000; days += 100) {
@@ -111,7 +107,7 @@ public class DateRangeTest {
 			bean.setDate4(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date4");
+					"date4");
 		}
 
 		bean = new DateRangeBean();
@@ -132,7 +128,7 @@ public class DateRangeTest {
 			bean.setDate5(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date5");
+					"date5");
 		}
 
 		for (int days = 1; days <= 2001; days += 100) {
@@ -140,7 +136,7 @@ public class DateRangeTest {
 			bean.setDate5(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date5");
+					"date5");
 		}
 
 		bean = new DateRangeBean();
@@ -161,7 +157,7 @@ public class DateRangeTest {
 			bean.setDate6(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date6");
+					"date6");
 		}
 
 		for (int days = 2; days <= 2002; days += 100) {
@@ -169,7 +165,7 @@ public class DateRangeTest {
 			bean.setDate6(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date6");
+					"date6");
 		}
 
 		bean = new DateRangeBean();
@@ -190,7 +186,7 @@ public class DateRangeTest {
 			bean.setDate4(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date4");
+					"date4");
 		}
 
 		for (int days = 0; days <= 2000; days += 100) {
@@ -198,7 +194,7 @@ public class DateRangeTest {
 			bean.setDate4(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date4");
+					"date4");
 		}
 
 		bean = new DateRangeBean();
@@ -209,14 +205,12 @@ public class DateRangeTest {
 		bean = new DateRangeBean();
 		bean.setDate7(new Date());
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date7");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date7");
 
 		bean = new DateRangeBean();
 		bean.setDate7(util.add(new Date(), Calendar.WEEK_OF_YEAR, -2));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date7");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date7");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -231,7 +225,7 @@ public class DateRangeTest {
 			bean.setDate8(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date8");
+					"date8");
 		}
 
 		for (int days = 7; days <= 2007; days += 100) {
@@ -239,7 +233,7 @@ public class DateRangeTest {
 			bean.setDate8(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date8");
+					"date8");
 		}
 
 		bean = new DateRangeBean();
@@ -250,14 +244,12 @@ public class DateRangeTest {
 		bean = new DateRangeBean();
 		bean.setDate8(util.add(new Date(), Calendar.WEEK_OF_YEAR, +1));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date8");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date8");
 
 		bean = new DateRangeBean();
 		bean.setDate8(util.add(new Date(), Calendar.WEEK_OF_YEAR, -1));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date8");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date8");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -272,7 +264,7 @@ public class DateRangeTest {
 			bean.setDate9(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date9");
+					"date9");
 		}
 
 		for (int days = 14; days <= 2014; days += 100) {
@@ -280,7 +272,7 @@ public class DateRangeTest {
 			bean.setDate9(util.add(new Date(), Calendar.DAY_OF_MONTH, days));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date9");
+					"date9");
 		}
 
 		bean = new DateRangeBean();
@@ -291,14 +283,12 @@ public class DateRangeTest {
 		bean = new DateRangeBean();
 		bean.setDate9(new Date());
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date9");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date9");
 
 		bean = new DateRangeBean();
 		bean.setDate9(util.add(new Date(), Calendar.WEEK_OF_YEAR, +2));
 		validations = simpleValidator.validate(bean);
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date9");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations, "date9");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -321,13 +311,13 @@ public class DateRangeTest {
 		bean.setDate10(util.add(new Date(), Calendar.DAY_OF_MONTH, -1));
 		validations = simpleValidator.validate(bean);
 		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date10");
+				"date10");
 
 		bean = new DateRangeBean();
 		bean.setDate10(util.add(new Date(), Calendar.DAY_OF_MONTH, end + 1));
 		validations = simpleValidator.validate(bean);
 		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.date.DateRangeBean.date10");
+				"date10");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -348,7 +338,7 @@ public class DateRangeTest {
 			bean.setDate11(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date11");
+					"date11");
 		}
 
 		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
@@ -356,7 +346,7 @@ public class DateRangeTest {
 			bean.setDate11(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date11");
+					"date11");
 		}
 	}
 
@@ -378,7 +368,7 @@ public class DateRangeTest {
 			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date12");
+					"date12");
 		}
 
 		for (int minutes = (120 * 60 + 1); minutes < (120 * 60 + 10); minutes += 1) {
@@ -386,7 +376,7 @@ public class DateRangeTest {
 			bean.setDate12(util.add(new Date(), Calendar.MINUTE, minutes));
 			validations = simpleValidator.validate(bean);
 			TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-					"br.atech.workshop.validation.date.DateRangeBean.date12");
+					"date12");
 		}
 	}
 

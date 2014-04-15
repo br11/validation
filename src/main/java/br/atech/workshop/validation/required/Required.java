@@ -13,12 +13,30 @@ import javax.validation.Payload;
  * @author marcio
  * 
  */
-@Target(ElementType.FIELD)
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
+		ElementType.CONSTRUCTOR, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = RequiredValidator.class)
 public @interface Required {
 
-	String message() default "{javax.validation.constraints.NotNull.message}"; 
+	/**
+	 * 
+	 * @author marcio
+	 * 
+	 */
+	@Target({ ElementType.METHOD, ElementType.FIELD,
+			ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR,
+			ElementType.PARAMETER })
+	@Retention(RetentionPolicy.RUNTIME)
+	public static @interface List {
+		Class<?>[] groups() default {};
+
+		Class<? extends Payload>[] payload() default {};
+
+		Required[] value();
+	}
+
+	String message() default "{javax.validation.constraints.NotNull.message}";
 
 	Class<?>[] groups() default {};
 

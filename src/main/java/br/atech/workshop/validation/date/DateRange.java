@@ -14,7 +14,8 @@ import javax.validation.Payload;
  * @author marcio
  * 
  */
-@Target(ElementType.FIELD)
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
+		ElementType.CONSTRUCTOR, ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = DateRangeValidator.class)
 public @interface DateRange {
@@ -151,6 +152,23 @@ public @interface DateRange {
 			this.gapField = gapField;
 		}
 
+	}
+
+	/**
+	 * 
+	 * @author marcio
+	 * 
+	 */
+	@Target({ ElementType.METHOD, ElementType.FIELD,
+			ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR,
+			ElementType.PARAMETER })
+	@Retention(RetentionPolicy.RUNTIME)
+	public static @interface List {
+		Class<?>[] groups() default {};
+
+		Class<? extends Payload>[] payload() default {};
+
+		DateRange[] value();
 	}
 
 	String message() default "O valor informado no campo {field} está fora dos limites permitidos.";

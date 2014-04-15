@@ -22,7 +22,7 @@ public class NumericTest {
 
 	NumericValidator validator = new NumericValidator();
 	NumericUtil util = new NumericUtil();
-	
+
 	@Test
 	public void testDoubleFraction() {
 		Assert.assertTrue(util.isValidFraction(24.4, 1));
@@ -92,15 +92,13 @@ public class NumericTest {
 		bean.setNumber3(1000);
 		validations = simpleValidator.validate(bean);
 		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.numeric.NumericBean.number1",
-				"br.atech.workshop.validation.numeric.NumericBean.number2",
-				"br.atech.workshop.validation.numeric.NumericBean.number3");
+				"number1", "number2", "number3");
 
 		bean = new NumericBean();
 		bean.setNumber7(99.0);
 		validations = simpleValidator.validate(bean);
 		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.numeric.NumericBean.number7");
+				"number7");
 
 		bean = new NumericBean();
 		bean.setNumber7(98.0);
@@ -138,11 +136,7 @@ public class NumericTest {
 		bean.setNumber6(123.451);
 		validations = simpleValidator.validate(bean);
 		TestUtil.assertValid((Set<ConstraintViolation<?>>) validations,
-				"br.atech.workshop.validation.numeric.NumericBean.number1",
-				"br.atech.workshop.validation.numeric.NumericBean.number2",
-				"br.atech.workshop.validation.numeric.NumericBean.number3",
-				"br.atech.workshop.validation.numeric.NumericBean.number4",
-				"br.atech.workshop.validation.numeric.NumericBean.number5",
-				"br.atech.workshop.validation.numeric.NumericBean.number6");
+				"number1", "number2", "number3", "number4", "number5",
+				"number6");
 	}
 }

@@ -1,6 +1,5 @@
 package br.atech.workshop.validation.validator;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -47,7 +46,7 @@ public class SimpleValidator implements Validator {
 	@Override
 	public <T> Set<ConstraintViolation<T>> validate(T object,
 			Class<?>... groups) {
-		return transform(validator.validate(object, groups));
+		return validator.validate(object, groups);
 	}
 
 	/*
@@ -79,7 +78,7 @@ public class SimpleValidator implements Validator {
 	@Override
 	public <T> Set<ConstraintViolation<T>> validateProperty(T object,
 			String property, Class<?>... groups) {
-		return transform(validator.validateProperty(object, property, groups));
+		return validator.validateProperty(object, property, groups);
 	}
 
 	/*
@@ -91,8 +90,7 @@ public class SimpleValidator implements Validator {
 	@Override
 	public <T> Set<ConstraintViolation<T>> validateValue(Class<T> object,
 			String property, Object value, Class<?>... groups) {
-		return transform(validator.validateValue(object, property, value,
-				groups));
+		return validator.validateValue(object, property, value, groups);
 	}
 
 	/*
@@ -103,23 +101,6 @@ public class SimpleValidator implements Validator {
 	@Override
 	public ExecutableValidator forExecutables() {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param validations
-	 * @return
-	 */
-	private <T> Set<ConstraintViolation<T>> transform(
-			Set<ConstraintViolation<T>> validations) {
-
-		Set<ConstraintViolation<T>> transformed = new LinkedHashSet<>();
-		for (ConstraintViolation<T> constraintViolation : validations) {
-			transformed.add(new ConstraintViolationWrapper<>(
-					constraintViolation));
-		}
-
-		return transformed;
 	}
 
 	/**

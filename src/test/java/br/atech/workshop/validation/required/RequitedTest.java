@@ -26,11 +26,8 @@ public class RequitedTest {
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
-		TestUtil.assertValid(
-				(Set<ConstraintViolation<?>>) validate1,
-				"br.atech.workshop.validation.required.RequiredBean.id",//
-				"br.atech.workshop.validation.required.RequiredBean.birthDate",//
-				"br.atech.workshop.validation.required.RequiredBean.name");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1, "id",
+				"birthDate", "name");
 	}
 
 	@Test
@@ -41,8 +38,7 @@ public class RequitedTest {
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1,//
-				"br.atech.workshop.validation.required.RequiredBean.name");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1, "name");
 	}
 
 	@Test
@@ -66,7 +62,6 @@ public class RequitedTest {
 
 		Set<?> validate1 = new SimpleValidator().validate(bean);
 
-		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1,//
-				"br.atech.workshop.validation.required.RequiredBean.name");
+		TestUtil.assertValid((Set<ConstraintViolation<?>>) validate1, "name");
 	}
 }
