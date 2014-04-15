@@ -171,7 +171,7 @@ public @interface DateRange {
 		DateRange[] value();
 	}
 
-	String message() default "O valor informado no campo {field} está fora dos limites permitidos.";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 
@@ -186,6 +186,4 @@ public @interface DateRange {
 	int maxGap() default 0;
 
 	Ranges[] value() default Ranges.Any;
-
-	boolean todate() default false;
 }

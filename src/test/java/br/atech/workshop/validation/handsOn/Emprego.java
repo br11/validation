@@ -22,7 +22,7 @@ public class Emprego {
 	@Required(groups = Perfis.SeguroDesemprego.class)
 	private Date demissao;
 
-	@Numeric(value = "#########.##", min = 0.1)
+	@Numeric(value = "#########.##", min = 0.01)
 	private BigDecimal ultimoSalario;
 
 	/**

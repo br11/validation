@@ -35,12 +35,18 @@ public class TesteMenorDeIdade {
 		MenorDeIdade bean = new MenorDeIdade();
 		bean.setNome("fulano de tal");
 
+		/* Nascido à 17 anos */
 		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -17));
 		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean);
 
+		/*
+		 * Nascido à 18 anos: valido até o final ano em que completa a
+		 * maioridade
+		 */
 		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -18));
 		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean);
 
+		/* Nascido à 19 anos: não atendo o requisito de menoridade */
 		bean.setDataDeNascimento(util.add(new Date(), Calendar.YEAR, -19));
 		new TestUtil(Perfis.BolsaFamilia.class).checkViolations(bean,
 				"dataDeNascimento");

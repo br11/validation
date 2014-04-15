@@ -11,8 +11,8 @@ public class MenorDeIdade {
 	@Required
 	private String nome;
 
-	@Required(groups = Perfis.BolsaFamilia.class)
 	@DateRange(min = DateRange.Ranges.ThisYear, minGap = -18, groups = Perfis.BolsaFamilia.class)
+	@Required(groups = Perfis.BolsaFamilia.class)
 	private Date dataDeNascimento;
 
 	/**

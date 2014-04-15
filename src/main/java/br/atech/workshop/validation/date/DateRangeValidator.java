@@ -48,15 +48,21 @@ public class DateRangeValidator implements
 		Date dateValue = (Date) value;
 
 		if (!util.isValid(annotation, dateValue, context)) {
-			buildConstraintViolation(context, annotation.value());
+			if (annotation.message().isEmpty()) {
+				buildConstraintViolation(context, annotation.value());
+			}
 			return false;
 		}
 		if (!util.isValidMin(annotation, dateValue, context)) {
-			buildConstraintViolation(context, annotation.min());
+			if (annotation.message().isEmpty()) {
+				buildConstraintViolation(context, annotation.min());
+			}
 			return false;
 		}
 		if (!util.isValidMax(annotation, dateValue, context)) {
-			buildConstraintViolation(context, annotation.max());
+			if (annotation.message().isEmpty()) {
+				buildConstraintViolation(context, annotation.max());
+			}
 			return false;
 		}
 
