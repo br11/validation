@@ -23,7 +23,7 @@ public class TesteEmprego {
 	public void testSeguroDesemprego() {
 		Emprego bean = new Emprego();
 
-		new TestUtil(Perfis.SeguroDesemprego.class).checkViolations(bean,
+		new TestUtil(Programas.SeguroDesemprego.class).checkViolations(bean,
 				"demissao");
 	}
 

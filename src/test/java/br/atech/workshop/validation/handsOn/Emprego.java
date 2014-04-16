@@ -19,7 +19,7 @@ public class Emprego {
 	@Required
 	private Date admissao;
 
-	@Required(groups = Perfis.SeguroDesemprego.class)
+	@Required(groups = Programas.SeguroDesemprego.class)
 	private Date demissao;
 
 	@Numeric(value = "#########.##", min = 0.01)
